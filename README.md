@@ -37,6 +37,23 @@ Run the starter Python entry point with:
 python3 code/main.py
 ```
 
+The current implementation is a deterministic, offline evidence-audit agent. It resolves current and historical identifiers, parses CSV/JSON/SQLite/log/text/PDF evidence, applies the retention and redaction rules, respects each case's `audit_at`, and writes ordered steps to the repository-root `output.csv`. It does not make external model calls or require API credentials.
+
+```bash
+# Audit the full target set
+python3 code/main.py
+
+# Audit the public examples to a separate file
+python3 code/main.py --input dataset/sample_deletion_requests.csv --output sample_predictions.csv
+
+# Run sample metrics and additional rule checks
+python3 code/evaluation/main.py
+```
+
+PDF text is extracted with Python's standard library. For PNG screenshots, install Tesseract OCR and make its executable available on `PATH`; the agent reports when screenshots cannot be read. When OCR is not installed, the rest of the evidence is still processed and no OCR result is fabricated.
+
+The evidence index uses each manifest `file_id` as the citation, merges trace-start data with its completed lookup, and filters by both evidence availability and event time. `reported_status` and activity operation results are not treated as proof of deletion.
+
 The blank template at `dataset/output.csv` is provided as a reference. Your final generated file for submission must be the root-level `output.csv`.
 
 
