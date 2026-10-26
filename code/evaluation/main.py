@@ -174,6 +174,7 @@ def run_custom_checks() -> list[tuple[str, bool]]:
         },
     ]
     ordered = order_steps(unsorted)
+    # appending the object
     results.append(
         (
             "Phase ordering and consecutive numbering",
