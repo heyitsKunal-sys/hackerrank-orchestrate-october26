@@ -59,7 +59,7 @@ The blank template at `dataset/output.csv` is provided as a reference. Your fina
 
 ## Dataset
 
-All participant-facing files are in `dataset/`:
+All participant-facing files are in the `dataset/`:
 
 | File | Contents |
 | --- | --- |
